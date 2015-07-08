@@ -41,6 +41,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidLayoutSubviews() {
+        pugImage.center = CGPointMake(pugImage.center.x-400, pugImage.center.y)
+    }
+    override func viewDidAppear(animated:Bool){
+        UIView.animateWithDuration(1, animations: {() -> Void in
+            self.pugImage.center = CGPointMake(self.pugImage.center.x+400, self.pugImage.center.y)})}
+    
+    }
 
-}
 
