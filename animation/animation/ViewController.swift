@@ -42,11 +42,11 @@ class ViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        pugImage.alpha = 0
+        pugImage.frame = CGRectMake(100, 20, 0, 0)
     }
     override func viewDidAppear(animated:Bool){
         UIView.animateWithDuration(1, animations: {() -> Void in
-            self.pugImage.alpha = 1 })}
+            self.pugImage.frame = CGRectMake(100, 20, 100,200) })}
     
     }
 
