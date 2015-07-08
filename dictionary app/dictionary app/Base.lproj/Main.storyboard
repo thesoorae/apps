@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="dictionary_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What does this word mean?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7f-kn-Amc">
+                                <rect key="frame" x="193" y="57" width="215" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPS-8Q-VLD">
+                                <rect key="frame" x="60" y="259" width="480" height="121"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.32096975653360982" green="1" blue="0.24036072298100208" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UOX-Y1-LSV">
+                                <rect key="frame" x="16" y="105" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGL-O4-4pP">
+                                <rect key="frame" x="277" y="157" width="48" height="30"/>
+                                <state key="normal" title="Define!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="define:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="c6f-E4-emF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UOX-Y1-LSV" firstAttribute="top" secondItem="l7f-kn-Amc" secondAttribute="bottom" constant="27" id="0s2-ay-BAl"/>
+                            <constraint firstAttribute="centerX" secondItem="l7f-kn-Amc" secondAttribute="centerX" id="27N-7q-Lbr"/>
+                            <constraint firstItem="FGL-O4-4pP" firstAttribute="top" secondItem="UOX-Y1-LSV" secondAttribute="bottom" constant="22" id="Bl8-Jw-DUU"/>
+                            <constraint firstItem="UOX-Y1-LSV" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="YYN-c3-FcG"/>
+                            <constraint firstItem="UOX-Y1-LSV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="c2a-11-6y5"/>
+                            <constraint firstAttribute="centerX" secondItem="FGL-O4-4pP" secondAttribute="centerX" id="lwm-i4-eOt"/>
+                            <constraint firstItem="l7f-kn-Amc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="37" id="m30-Yj-DUc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="definition" destination="qPS-8Q-VLD" id="hqX-VN-4Nq"/>
+                        <outlet property="word" destination="UOX-Y1-LSV" id="SDT-RE-BOf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
