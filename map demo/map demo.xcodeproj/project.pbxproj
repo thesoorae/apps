@@ -13,6 +13,7 @@
 		566668811B4EEE83008CF76D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 566668801B4EEE83008CF76D /* Images.xcassets */; };
 		566668841B4EEE83008CF76D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566668821B4EEE83008CF76D /* LaunchScreen.xib */; };
 		566668901B4EEE83008CF76D /* map_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5666688F1B4EEE83008CF76D /* map_demoTests.swift */; };
+		5666689A1B4EF689008CF76D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 566668991B4EF689008CF76D /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		566668891B4EEE83008CF76D /* map demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "map demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5666688E1B4EEE83008CF76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5666688F1B4EEE83008CF76D /* map_demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = map_demoTests.swift; sourceTree = "<group>"; };
+		566668991B4EF689008CF76D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5666689A1B4EF689008CF76D /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +62,7 @@
 		5666686B1B4EEE81008CF76D = {
 			isa = PBXGroup;
 			children = (
+				566668991B4EF689008CF76D /* CoreLocation.framework */,
 				566668761B4EEE82008CF76D /* map demo */,
 				5666688C1B4EEE83008CF76D /* map demoTests */,
 				566668751B4EEE82008CF76D /* Products */,
