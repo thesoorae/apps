@@ -14,6 +14,7 @@
 		56F739161B53FFBD0098DEA3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56F739141B53FFBD0098DEA3 /* LaunchScreen.xib */; };
 		56F739221B53FFBD0098DEA3 /* memorable_placesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F739211B53FFBD0098DEA3 /* memorable_placesTests.swift */; };
 		56F739301B540AF50098DEA3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F7392F1B540AF50098DEA3 /* TableViewController.swift */; };
+		56F739321B541A0B0098DEA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F739311B541A0B0098DEA3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		56F739201B53FFBD0098DEA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56F739211B53FFBD0098DEA3 /* memorable_placesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memorable_placesTests.swift; sourceTree = "<group>"; };
 		56F7392F1B540AF50098DEA3 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		56F739311B541A0B0098DEA3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56F739321B541A0B0098DEA3 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		56F738FD1B53FFBC0098DEA3 = {
 			isa = PBXGroup;
 			children = (
+				56F739311B541A0B0098DEA3 /* CoreLocation.framework */,
 				56F739081B53FFBD0098DEA3 /* memorable places */,
 				56F7391E1B53FFBD0098DEA3 /* memorable placesTests */,
 				56F739071B53FFBD0098DEA3 /* Products */,

@@ -56,7 +56,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         annotation.title = "New Place"
         annotation.subtitle = "New Subtitle"
         map.addAnnotation(annotation)
-        memorablePlaces.append(newCoordinate)
+        println(annotation.coordinate.latitude)
+        
+
+        memorablePlaces.append("\(annotation.coordinate.latitude), \(annotation.coordinate.longitude)")
         
     }
     

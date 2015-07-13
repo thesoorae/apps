@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="GOC-Zb-Nhm">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="GOC-Zb-Nhm">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOC-Zb-Nhm" id="Sin-nv-X35">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -21,8 +21,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="x9p-K4-RTD" id="yhD-pE-BnU"/>
-                            <outlet property="delegate" destination="x9p-K4-RTD" id="p8u-Rq-3UR"/>
+                            <outlet property="dataSource" destination="x9p-K4-RTD" id="Nx7-ww-d7R"/>
+                            <outlet property="delegate" destination="x9p-K4-RTD" id="8FZ-ud-Ovx"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Memorable Places" id="2QC-Tr-6He">
