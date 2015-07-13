@@ -18,6 +18,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOC-Zb-Nhm" id="Sin-nv-X35">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="show" id="sPS-Zs-Kog"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -26,7 +29,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Memorable Places" id="2QC-Tr-6He">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="BWx-dB-CdW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="BWx-dB-CdW">
                             <connections>
                                 <segue destination="vXZ-lx-hvc" kind="show" id="OZa-OK-Re4"/>
                             </connections>
@@ -83,4 +86,7 @@
             <point key="canvasLocation" x="216" y="269"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sPS-Zs-Kog"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,9 @@
 
 import UIKit
 
+var places = [Dictionary<String, String>()]
+var activePlace = -1
+
 class TableViewController: UITableViewController {
 
     @IBOutlet var memorablePlacesTable: UITableView!
@@ -20,12 +23,16 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        memorablePlaces.append("hi")
+        if places.count == 1 {
+            places.removeAtIndex(0)
+            places.append(["name":"Taj Mahal", "lat":"27.175277", "lon":"78.042128"])
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
 
     // MARK: - Table view data source
@@ -39,16 +46,22 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section
-        return memorablePlaces.count    }
+        return places.count    }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text=memorablePlaces[indexPath.row]
+        cell.textLabel?.text=places[indexPath.row]["name"]
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        activePlace = indexPath.row
+        return indexPath
+        
     }
     
     override func viewDidAppear(animated:Bool){
