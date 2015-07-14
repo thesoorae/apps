@@ -26,6 +26,8 @@ class TableViewController: UITableViewController {
         if places.count == 1 {
             places.removeAtIndex(0)
             places.append(["name":"Taj Mahal", "lat":"27.175277", "lon":"78.042128"])
+            if NSUserDefaults.standardUserDefaults().objectForKey("places") != nil {
+                places = NSUserDefaults.standardUserDefaults().objectForKey("places") as! [Dictionary<String, String>]}
         }
     }
 
@@ -58,10 +60,24 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            places.removeAtIndex(indexPath.row)
+            NSUserDefaults.standardUserDefaults().setObject(places, forKey: "places")
+            memorablePlacesTable.reloadData()
+        }
+    }
+    
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         activePlace = indexPath.row
         return indexPath
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "newPlace" {
+            activePlace = -1
+        }
     }
     
     override func viewDidAppear(animated:Bool){

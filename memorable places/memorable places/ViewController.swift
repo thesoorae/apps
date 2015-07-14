@@ -87,6 +87,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     annotation.coordinate = newCoordinate
                     annotation.title = title
                     self.map.addAnnotation(annotation)
+                NSUserDefaults.standardUserDefaults().setObject(places, forKey: "places")
                 
                 })}}
             
