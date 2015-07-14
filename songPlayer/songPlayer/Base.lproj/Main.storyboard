@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="songPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e83-m8-3Bx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Losing You-Solange" id="3ea-sO-Roa">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="97h-YU-V3Q">
+                                            <connections>
+                                                <action selector="play:" destination="vXZ-lx-hvc" id="ZN1-VC-7dO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0U8-vM-PK4">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="pause" id="k5I-Ih-pyV">
+                                        <connections>
+                                            <action selector="pause:" destination="vXZ-lx-hvc" id="Doh-Yv-NWb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hoO-fz-vvs"/>
+                                    <barButtonItem title="Stop" id="zzB-D7-rSJ">
+                                        <connections>
+                                            <action selector="stop:" destination="vXZ-lx-hvc" id="Ehl-HE-zqt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="E8w-Oc-0oj">
+                                <rect key="frame" x="38" y="323" width="246" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="242" id="wpy-8c-ZS4"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="J5d-sq-l6w"/>
+                                </connections>
+                            </slider>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="solange.png" translatesAutoresizingMaskIntoConstraints="NO" id="qlI-TE-GsB">
+                                <rect key="frame" x="26" y="85" width="271" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="271" id="EzC-CU-IKs"/>
+                                    <constraint firstAttribute="height" constant="149" id="gdy-Ka-pp2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e83-m8-3Bx" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="4tB-AE-G4r"/>
+                            <constraint firstItem="0U8-vM-PK4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="80g-ey-cs2"/>
+                            <constraint firstItem="E8w-Oc-0oj" firstAttribute="top" secondItem="qlI-TE-GsB" secondAttribute="bottom" constant="89" id="Bfo-Jq-Ydj"/>
+                            <constraint firstAttribute="centerX" secondItem="qlI-TE-GsB" secondAttribute="centerX" id="OAi-dd-Pin"/>
+                            <constraint firstAttribute="centerX" secondItem="E8w-Oc-0oj" secondAttribute="centerX" id="ULA-XK-Otd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e83-m8-3Bx" secondAttribute="trailing" constant="-16" id="Yi7-Dt-Wtc"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="0U8-vM-PK4" secondAttribute="bottom" id="iym-ru-7Ke"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0U8-vM-PK4" secondAttribute="trailing" constant="-16" id="qD1-XO-Avh"/>
+                            <constraint firstItem="qlI-TE-GsB" firstAttribute="top" secondItem="e83-m8-3Bx" secondAttribute="bottom" constant="41" id="sxw-lQ-JhH"/>
+                            <constraint firstItem="e83-m8-3Bx" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="uAf-ND-z0w"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="sliderValue" destination="E8w-Oc-0oj" id="usi-gG-Uod"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="solange.png" width="653" height="439"/>
+    </resources>
+</document>
