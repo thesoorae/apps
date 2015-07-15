@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let url = NSURL(string: "http://i.imgur.com/mNgfikA.jpg")
+      /*  let url = NSURL(string: "http://i.imgur.com/mNgfikA.jpg")
         let urlRequest = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue(), completionHandler: {response, data, error in
         
@@ -36,13 +36,19 @@ class ViewController: UIViewController {
                 
             }
         })
-    }
+
+*/
+        var documentsDirectory: String?
+        var paths:[AnyObject] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        if paths.count > 0 {
+            documentsDirectory = paths[0] as? String
+            var savePath = documentsDirectory! + "/fractal.jpg"
+            self.image.image = UIImage(named: savePath)
+        }}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
