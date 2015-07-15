@@ -17,15 +17,22 @@ class ViewController: UIViewController {
         var appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         var newUser = NSEntityDescription.insertNewObjectForEntityForName("Users", inManagedObjectContext: context) as! NSManagedObject
-        newUser.setValue("thesoorae", forKey: "username")
-        newUser.setValue("pass", forKey: "password")
+        newUser.setValue("kerstin", forKey: "username")
+        newUser.setValue("pass2", forKey: "password")
         context.save(nil)
         var request = NSFetchRequest(entityName: "Users")
         var results = context.executeFetchRequest(request, error: nil)
         if results?.count > 0 {
         for result:AnyObject in results! {
-            println(result)
-            } } else{
+            if let user = result.valueForKey("username") as? String {
+                if user == "kerstin" {
+               //     context.deleteObject(result as! NSManagedObject)
+                //    println(user + " has been deleted")
+                }
+                
+                    
+                
+            } } } else{
                 println("no results")}
         }
     
