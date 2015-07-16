@@ -14,10 +14,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var url = NSURL(string: "http://www.google.com")
+      /*  var url = NSURL(string: "http://www.google.com")
         var request = NSURLRequest(URL:url!)
         webview.loadRequest(request)
+        */
         
+        var html = "<html><head></head><body><h1>Hello world!</h1></body></html>"
+        
+        webview.loadHTMLString(html, baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
