@@ -5,10 +5,9 @@
         <attribute name="title" optional="YES" attributeType="String">
             <userInfo/>
         </attribute>
-        <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
         <userInfo/>
     </entity>
     <elements>
-        <element name="Posts" positionX="261" positionY="189" width="128" height="90"/>
+        <element name="Posts" positionX="261" positionY="189" width="128" height="75"/>
     </elements>
 </model>

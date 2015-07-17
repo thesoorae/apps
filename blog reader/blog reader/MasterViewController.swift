@@ -44,8 +44,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 
                 println(error)
                 
-            } else {dispatch_async(dispatch_get_main_queue()) {
-                
+            } else {
 
                 
                 println(NSString(data: data, encoding: NSUTF8StringEncoding))
@@ -81,8 +80,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                                 
                                 if let content = item["content"] as? String {
                                    
-                                    if let updated = item["updated"] as? NSDate {
-                                        
+                                    
                                     
                                     var newPost: NSManagedObject = NSEntityDescription.insertNewObjectForEntityForName("Posts", inManagedObjectContext: context) as! NSManagedObject
                                     
@@ -90,10 +88,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                                     
                                     newPost.setValue(content, forKey: "content")
                                     
-                                        newPost.setValue(updated, forKey: "updated")
                                     
                                     context.save(nil)
-                                    }
+                                    
                                 }
                                 
                             }
@@ -107,7 +104,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 
                 self.tableView.reloadData()
                 
-                }}
+                }
             
         })
         
@@ -155,7 +152,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
         cell.textLabel!.text = object.valueForKey("title")!.description
-        cell.detailTextLabel!.text = object.valueForKey("updated")!.description
+//        cell.detailTextLabel!.text = object.valueForKey("updated")!.description
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
