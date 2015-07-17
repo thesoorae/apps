@@ -6,40 +6,48 @@
 //  Copyright (c) 2015 sourceapps. All rights reserved.
 //
 
+//
+//  MasterViewController.swift
+//  Blog Reader
+//
+//  Created by Rob Percival on 27/04/2015.
+//  Copyright (c) 2015 Appfish. All rights reserved.
+//
+
 import UIKit
 import CoreData
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
     var managedObjectContext: NSManagedObjectContext? = nil
-
-
-
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
         
         var appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         var context: NSManagedObjectContext = appDel.managedObjectContext!
-        // Do any additional setup after loading the view, typically from a nib.
         
         let url = NSURL(string: "https://www.googleapis.com/blogger/v3/blogs/10861780/posts?key=AIzaSyCWHQIxPFhF5hG-UIppwBB1zl2BBeRO4zg")
         
         let session = NSURLSession.sharedSession()
         
-        let task = session.dataTaskWithURL(url!, completionHandler: {(data, response, error) -> Void in
-        
-            if error != nil {
-              
-                println(error)
+        let task = session.dataTaskWithURL(url!, completionHandler: { (data, response, error) -> Void in
             
+            if error != nil {
+                
+                println(error)
+                
             } else {
                 
-              //  println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            
+                // println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                
                 let jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
                 
                 if jsonResult.count > 0 {
@@ -53,60 +61,88 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                         var results = context.executeFetchRequest(request, error: nil)!
                         
                         if results.count > 0 {
+                            
+                            for result in results {
+                                
+                                context.deleteObject(result as! NSManagedObject)
+                                
+                                context.save(nil)
+                                
+                            }
+                            
+                        }
                         
-                        for result in results {
-                            context.deleteObject(result as! NSManagedObject)
-                            context.save(nil)
-                            }}
                         
                         for item in items {
-                            //println(item)
-                            if let title = item["title"] as? String {
-                            if let content = item["content"] as? String{
-                                var newPost: NSManagedObject =  NSEntityDescription.insertNewObjectForEntityForName("Posts", inManagedObjectContext: context) as! NSManagedObject
                             
-                            newPost.setValue(title, forKey: "title")
-                            newPost.setValue(content, forKey: "content")
-                            context.save(nil)
+                            if let title = item["title"] as? String {
+                                
+                                if let content = item["content"] as? String {
+                                    
+                                    var newPost: NSManagedObject = NSEntityDescription.insertNewObjectForEntityForName("Posts", inManagedObjectContext: context) as! NSManagedObject
+                                    
+                                    newPost.setValue(title, forKey: "title")
+                                    
+                                    newPost.setValue(content, forKey: "content")
+                                    
+                                    context.save(nil)
+                                    
+                                }
+                                
                             }
+                            
+                            
+                            
+                        }
+                        
                     }
+                    
+                    
                 }
-                    }
-                }
-          
-            self.tableView.reloadData()
-                 }})
+                
+                
+                self.tableView.reloadData()
+                
+            }
+            
+        })
+        
         task.resume()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-   
+    
+    
     // MARK: - Segues
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            println("show detail")
-           }
-        
-    }
-
+            
+          println("show")
+            }
+            
+        }
+    
+    
     // MARK: - Table View
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-return 1    }
+        return 1
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        
         self.configureCell(cell, atIndexPath: indexPath)
+        
         return cell
     }
     
@@ -120,8 +156,6 @@ return 1    }
         return false
     }
     
-
-    
     var fetchedResultsController: NSFetchedResultsController {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
@@ -129,7 +163,7 @@ return 1    }
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Posts", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -159,17 +193,11 @@ return 1    }
     }
     var _fetchedResultsController: NSFetchedResultsController? = nil
     
-    
-    
-
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }
     
-
-
-
-
+    
     
 }
 
