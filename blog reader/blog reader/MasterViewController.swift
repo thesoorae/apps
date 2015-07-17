@@ -44,9 +44,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 
                 println(error)
                 
-            } else {
+            } else {dispatch_async(dispatch_get_main_queue()) {
                 
-                // println(NSString(data: data, encoding: NSUTF8StringEncoding))
+
+                
+                println(NSString(data: data, encoding: NSUTF8StringEncoding))
                 
                 let jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
                 
@@ -69,7 +71,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                                 context.save(nil)
                                 
                             }
-                            
+                        
                         }
                         
                         
@@ -78,6 +80,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                             if let title = item["title"] as? String {
                                 
                                 if let content = item["content"] as? String {
+                                   
+                                    if let updated = item["updated"] as? NSDate {
+                                        
                                     
                                     var newPost: NSManagedObject = NSEntityDescription.insertNewObjectForEntityForName("Posts", inManagedObjectContext: context) as! NSManagedObject
                                     
@@ -85,25 +90,24 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                                     
                                     newPost.setValue(content, forKey: "content")
                                     
-                                    context.save(nil)
+                                        newPost.setValue(updated, forKey: "updated")
                                     
+                                    context.save(nil)
+                                    }
                                 }
                                 
                             }
-                            
-                            
-                            
+                        
                         }
                         
                     }
-                    
                     
                 }
                 
                 
                 self.tableView.reloadData()
                 
-            }
+                }}
             
         })
         
@@ -121,9 +125,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             
-          println("show")
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+                (segue.destinationViewController as! DetailViewController).detailItem = object
             }
-            
+        }
         }
     
     
@@ -149,6 +155,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
         cell.textLabel!.text = object.valueForKey("title")!.description
+        cell.detailTextLabel!.text = object.valueForKey("updated")!.description
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -196,8 +203,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }
-    
-    
     
 }
 
