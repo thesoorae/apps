@@ -7,8 +7,23 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    println("Image selected")
+        self.dismissViewControllerAnimated(true, completion: nil)
+        importedImage.image = image
+    }
+    
+    @IBOutlet var importedImage: UIImageView!
+    @IBAction func importImage(sender: AnyObject) {
+        var image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        image.allowsEditing = false
+        self.presentViewController(image, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,7 +40,7 @@ println("failed")
             
             }
             }
-    */
+
         var query = PFQuery(className: "Products")
         query.getObjectInBackgroundWithId("NqwHHUEQRH", block: {(object, error) -> Void in
             if error != nil {
@@ -36,7 +51,9 @@ println("failed")
                 product.saveInBackground()
 
             }
-            })
+            }) */
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
