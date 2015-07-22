@@ -53,6 +53,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 if error == nil {
                     //signup successful
+                    self.performSegueWithIdentifier("login", sender: self)
                 } else {
                     if let errorString = error!.userInfo?["error"] as? String {
                        errorMessage = errorString
@@ -67,6 +68,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                             if user != nil {
                                 println("logged in")
                                 //logged in successfully
+                                self.performSegueWithIdentifier("login", sender: self)
                                 
                             } else {
                                 if let errorString = error!.userInfo?["error"] as? String {
@@ -103,6 +105,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
      }
+    override func viewDidAppear(animated: Bool) {
+        if PFUser.currentUser() != nil {
+            self.performSegueWithIdentifier("login", sender: self)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
