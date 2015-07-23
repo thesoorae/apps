@@ -150,12 +150,68 @@
                             <outlet property="delegate" destination="0Qo-fZ-PZp" id="jlu-oT-5Tj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="User List" id="HEn-6m-tEk"/>
+                    <navigationItem key="navigationItem" title="User List" id="HEn-6m-tEk">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="KLC-25-iyx">
+                            <connections>
+                                <segue destination="XHC-id-8Rq" kind="show" id="9Jw-32-Xoe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHP-Io-34g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="210"/>
+        </scene>
+        <!--Upload Photo-->
+        <scene sceneID="VqT-iH-RQh">
+            <objects>
+                <viewController id="XHC-id-8Rq" customClass="UploadPhoto" customModule="ParseStarterProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Njk-hT-xMh"/>
+                        <viewControllerLayoutGuide type="bottom" id="z8D-re-MPR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zgf-cY-eZT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-fn-n17">
+                                <rect key="frame" x="33" y="309" width="255" height="30"/>
+                                <state key="normal" title="Choose an image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImage:" destination="XHC-id-8Rq" eventType="touchUpInside" id="AlK-T3-rf6"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What do you want to share?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1o-6H-fvh">
+                                <rect key="frame" x="16" y="356" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wN-eP-6mD">
+                                <rect key="frame" x="88" y="420" width="144" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Post Image"/>
+                                <connections>
+                                    <action selector="postImage:" destination="XHC-id-8Rq" eventType="touchUpInside" id="TSV-xF-Ft4"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cC8-sH-Rce">
+                                <rect key="frame" x="41" y="105" width="239" height="153"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageDescription" destination="e1o-6H-fvh" id="JXw-mR-Ye2"/>
+                        <outlet property="uploadedImage" destination="cC8-sH-Rce" id="t5R-b7-EIK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MPO-3s-JL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="598" y="-452"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W5h-oc-T8C">

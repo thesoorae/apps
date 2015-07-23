@@ -13,10 +13,10 @@ class TableViewController: UITableViewController {
 var usernames = [""]
     var userIds = [""]
     var isFollowing = ["":false]
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    var refresher: UIRefreshControl!
+    func refresh() {
+        //println("Refreshed")
+        
         var query = PFUser.query()
         query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
             if let users = objects {
@@ -28,11 +28,11 @@ var usernames = [""]
                 for object in users {
                     if let user = object as? PFUser {
                         if user.objectId! != PFUser.currentUser()?.objectId {
-                        
-                        
-                        
-                        self.usernames.append(user.username!)
-                        self.userIds.append(user.objectId!)
+                            
+                            
+                            
+                            self.usernames.append(user.username!)
+                            self.userIds.append(user.objectId!)
                             
                             var query = PFQuery(className: "followers")
                             query.whereKey("follower", equalTo: PFUser.currentUser()!.objectId!)
@@ -40,10 +40,10 @@ var usernames = [""]
                             query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
                                 if let objects = objects {
                                     if objects.count > 0 {
-                                    self.isFollowing[user.objectId!] = true
-                                }
-                                else {
-                                    self.isFollowing[user.objectId!] = false
+                                        self.isFollowing[user.objectId!] = true
+                                    }
+                                    else {
+                                        self.isFollowing[user.objectId!] = false
                                     }}
                                 if self.isFollowing.count == self.usernames.count {
                                     self.tableView.reloadData()
@@ -55,9 +55,20 @@ var usernames = [""]
                 }
             }
             
-
+            
         })
-        // Uncomment the following line to preserve selection between presentations
+
+        self.refresher.endRefreshing()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refresher)
+        refresh()
+               // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

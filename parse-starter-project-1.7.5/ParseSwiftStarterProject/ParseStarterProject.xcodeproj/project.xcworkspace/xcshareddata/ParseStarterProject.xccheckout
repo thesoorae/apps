@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>4FBE725B-B075-45C1-8B22-A5A44C6D6DFD</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>ParseStarterProject</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A891DC99A911D7AECB9A81F5728A1F4AECFA8F4C</key>
 		<string>https://github.com/thesoorae/apps.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>parse-starter-project-1.7.5/ParseSwiftStarterProject/ParseStarterProject.xcodeproj/project.xcworkspace</string>
+	<string>parse-starter-project-1.7.5/ParseSwiftStarterProject/ParseStarterProject.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A891DC99A911D7AECB9A81F5728A1F4AECFA8F4C</key>
