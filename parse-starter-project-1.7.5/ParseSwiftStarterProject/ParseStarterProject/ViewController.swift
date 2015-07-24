@@ -47,6 +47,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             var user = PFUser()
             user.username = username.text
             user.password = password.text
+
             
             user.signUpInBackgroundWithBlock{(success, error) -> Void in
             self.activityIndicator.stopAnimating()
@@ -105,9 +106,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
      }
+    
     override func viewDidAppear(animated: Bool) {
         if PFUser.currentUser() != nil {
+        if PFUser.currentUser()?.username != nil {
             self.performSegueWithIdentifier("login", sender: self)
+        }
         }
     }
 

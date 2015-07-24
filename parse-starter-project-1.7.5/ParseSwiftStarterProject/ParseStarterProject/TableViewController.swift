@@ -14,9 +14,17 @@ var usernames = [""]
     var userIds = [""]
     var isFollowing = ["":false]
     var refresher: UIRefreshControl!
+    
+    @IBAction func logOut(sender: AnyObject) {
+        PFUser.logOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("login") as! UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+
     func refresh() {
         //println("Refreshed")
-        
         var query = PFUser.query()
         query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
             if let users = objects {
@@ -59,8 +67,9 @@ var usernames = [""]
         })
 
         self.refresher.endRefreshing()
-    }
-    override func viewDidLoad() {
+        }
+    
+        override func viewDidLoad() {
         super.viewDidLoad()
 
         refresher = UIRefreshControl()

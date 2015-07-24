@@ -15,22 +15,19 @@ class UploadPhoto: UIViewController, UINavigationControllerDelegate, UIImagePick
     
     @IBOutlet var uploadedImage: UIImageView!
     @IBOutlet var imageDescription: UITextField!
+    var activityIndicator = UIActivityIndicatorView()
     
-    var imageFile = PFFile()
+   // var imageFile = PFFile()
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageData = UIImagePNGRepresentation(pickedImage)
-         imageFile = PFFile(data: imageData)
-        PFUser.currentUser()?.saveInBackgroundWithBlock({ (success, error) -> Void in
-            if error == nil {
-                self.uploadedImage.image = pickedImage
-            } else {
-                println("error")
-            }
-        })
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    
+    func displayAlert(title:String, message:String){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
+
     
     @IBAction func chooseImage(sender: AnyObject){
         var image = UIImagePickerController()
@@ -40,19 +37,40 @@ class UploadPhoto: UIViewController, UINavigationControllerDelegate, UIImagePick
         self.presentViewController(image, animated: true, completion: nil)
     }
     
-    @IBAction func postImage(sender: AnyObject) {
-        var imageDescriptionText:String = imageDescription.text
-        var user = PFUser.currentUser()!
-        let userPhoto = PFObject(className: "savedImages")
-        userPhoto.setObject(imageDescriptionText, forKey:"imageText")
-        userPhoto.setObject(imageFile,             forKey:"savedImages")
-        userPhoto.setObject(user, forKey:"user")
-        userPhoto.saveInBackground()
-    
-        
-    //    PFUser.currentUser()?.setObject(userPhoto)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        uploadedImage.image = image
 
     }
+    
+    @IBAction func postImage(sender: AnyObject) {
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,50,50))
+        activityIndicator.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
+        let userPhoto = PFObject(className: "savedImages")
+        userPhoto["imageText"] = imageDescription.text
+        userPhoto["user"] = PFUser.currentUser()!.objectId!
+        let imageData = UIImagePNGRepresentation(uploadedImage.image)
+        let imageFile = PFFile(name: "image.png", data: imageData)
+        userPhoto["savedImages"] = imageFile
+        userPhoto.saveInBackgroundWithBlock{(success, error) -> Void in
+          
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+            if error == nil {
+                self.displayAlert("image posted!", message:"your image has been posted successfully.")
+                self.uploadedImage.image = UIImage(named: "placeholder3.png")
+                self.imageDescription.text = ""
+        } else {
+                self.displayAlert("could not display image", message: "Please try again")}}}
     
     
     
